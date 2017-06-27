@@ -10,4 +10,5 @@
 <p>End time: <%= @meeting.end_time %></p>
 <h4>Notes:</h4>
 <p><%= @meeting.notes %></p>
+<%= link_to "Edit Meeting", edit_meeting_path(@meeting) %>
 <a href="/meetings">Back to all meetings</a>
