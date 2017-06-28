@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :meetings, except: :destroy
+      resources :tags, only: :index
     end
   end
 end
