@@ -1,0 +1,44 @@
+<div id="app">
+  <%= header %>
+  <h1><a href="/meetings">All meetings</a></h1>
+  <button v-on:click="changeOrderAttribute('start_time')">Sort by start time</button>
+  <button v-on:click="changeOrderAttribute('name')">Sort by name</button>
+  <button v-for="tag in tags" v-on:click="filterByTag(tag)">{{ tag.name }}</button>
+  <button v-on:click="resetFilterByTag()">All</button>
+  <input type="text" v-model="nameFilter" list="nameList">
+  <datalist id="nameList">
+    <option v-for="meeting in filteredMeetings">{{ meeting.name }}</option>
+  </datalist>
+  <div v-for="meeting in filteredMeetings">
+    <h3><a v-bind:href="'/meetings/' + meeting.id">{{ meeting.name }}</a></h3>
+    <p>
+      Tags:
+        <a v-for="tag in meeting.tags" v-bind:href="'/meetings?tag=' + tag.name">{{ tag.name }}</a>  
+    </p>
+    <p>Address: {{ meeting.address }}</p>
+    <p>Start time: {{ meeting.start_time }}</p>
+    <p>End time: {{ meeting.end_time }}</p>
+  </div>
+
+  <h3>Create a new meeting:</h3>
+  <form>
+    <div>
+      Name: <input type="text" v-model="newMeetingName">
+    </div>
+    <div>
+      Address: <input type="text" v-model="newMeetingAddress">
+    </div>
+    <div>
+      StartTime: <input type="datetime-local" v-model="newMeetingStartTime">
+    </div>
+    <div>
+      EndTime: <input type="datetime-local" v-model="newMeetingEndTime">
+    </div>
+    <textarea v-model="newMeetingNotes"></textarea>
+    Tags:
+    <span v-for="tag in tags">
+      <input type="checkbox" v-model="newMeetingTagIds" v-bind:value="tag.id">{{ tag.name }}
+    </span>
+    <button v-on:click="createMeeting()">Submit</button>
+  </form>
+</div>

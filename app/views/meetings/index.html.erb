@@ -1,13 +1,2 @@
-<div id="app">
-  <h1><a href="/meetings">All meetings</a></h1>
-  <div v-for="meeting in meetings">
-    <h3><a v-bind:href="'/meetings/' + meeting.id">{{ meeting.name }}</a></h3>
-    <p>
-      Tags:
-        <a v-for="tag in meeting.tags" v-bind:href="'/meetings?tag=' + tag.name">{{ tag.name }}</a>  
-    </p>
-    <p>Address: {{ meeting.address }}</p>
-    <p>Start time: {{ meeting.start_time }}</p>
-    <p>End time: {{ meeting.end_time }}</p>
-  </div>
-</div>
+<%= @header %>
+<%= render "vue", header: @header %>

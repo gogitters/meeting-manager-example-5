@@ -1,5 +1,6 @@
 class MeetingsController < ApplicationController
   def index
+    @header = "Go Gitters"
     if params[:tag]
       @meetings = Tag.find_by(name: params[:tag]).meetings
     else
